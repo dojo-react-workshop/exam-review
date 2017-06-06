@@ -1,7 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<h1>
-  Goodbye
-</h1>
+<div
+  className="App container"
+>
+  <h1>
+    Github App
+  </h1>
+  <div
+    className="row"
+  >
+    <div
+      className="large-12 columns"
+    >
+      <label>
+        User Search
+      </label>
+      <input
+        onChange={[Function]}
+        placeholder="Github username..."
+        type="text"
+        value=""
+      />
+      <button
+        disabled={true}
+        onClick={[Function]}
+      >
+        Search
+      </button>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <table
+      className="table"
+    >
+      <thead>
+        <tr>
+          <th
+            width="500"
+          >
+            Users
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+  </div>
+</div>
 `;

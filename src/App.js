@@ -3,7 +3,7 @@ import UserForm from './UserForm';
 import UserList from './UserList';
 import RepoList from './RepoList';
 import axios from 'axios';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 class App extends Component {
     state = {
         users: []
@@ -25,14 +25,17 @@ class App extends Component {
             });
     }
     render() {
-        const { repos } = this.props;
         return (
-            <div className="App container">
-                <h1>Github App</h1>
-                <UserForm onSubmit={this.handleSearchFormSubmit} />
-                <UserList users={this.state.users} />
-                <RepoList repos={repos} />
-            </div>
+            <Router>
+                <div className="App container">
+                    <h1>Github App</h1>
+                    <UserForm onSubmit={this.handleSearchFormSubmit} />
+                    <UserList users={this.state.users} />
+                    <Route path="/:user/repos" render={(props) => {
+                        return <RepoList {...props} shouldRedirect={this.state.users.length < 1} />
+                    }} />
+                </div>
+            </Router>
         )
     }
 }
