@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class UserForm extends Component {
     state = {
@@ -12,9 +13,13 @@ class UserForm extends Component {
         });
     }
     handleSubmit = (event) => {
+        if (this.props.location.path !== '/') {
+            this.props.history.push(`/`)
+        }
         this.props.onSubmit(this.state.searchTerm)
             .then(() => {
                 this.setState({ searchTerm: '', error: null })
+
             })
             .catch(() => {
                 this.setState({

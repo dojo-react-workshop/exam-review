@@ -6,7 +6,7 @@ const UserList = (props) => {
     const tableRows = props.users.map((user) => {
         return (
             <tr key={user.id}>
-                <td><Link to={`/${user.login}/repos`}>{user.login}</Link></td>
+                <td><Link onClick={() => props.onClick(user.login)} to={`/${user.login}/repos`}>{user.login}</Link></td>
             </tr>
         )
     })
