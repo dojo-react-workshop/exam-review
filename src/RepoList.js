@@ -1,6 +1,13 @@
 import React from 'react';
-
-const UserList = () => {
+import { array } from 'prop-types'
+const RepoList = (props) => {
+    const tableRows = props.repos.map((repo) => {
+        return (
+            <tr key={repo.id}>
+                <td>{repo.name}</td>
+            </tr>
+        )
+    })
     return (
         <div className="row">
             <table className="table" >
@@ -10,18 +17,14 @@ const UserList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>gameServer</td>
-                    </tr>
-                    <tr>
-                        <td>thinking-in-react</td>
-                    </tr>
-                    <tr>
-                        <td>YoutubeBinge</td>
-                    </tr>
+                    {tableRows}
                 </tbody>
             </table>
         </div>
     )
 }
-export default UserList;
+
+RepoList.propTypes = {
+    repos: array.isRequired
+}
+export default RepoList;

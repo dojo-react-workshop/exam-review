@@ -1,6 +1,14 @@
 import React from 'react';
+import { array } from 'prop-types';
 
-const UserList = () => {
+const UserList = (props) => {
+    const tableRows = props.users.map((user) => {
+        return (
+            <tr key={user.id}>
+                <td>{user.login}</td>
+            </tr>
+        )
+    })
     return (
         <div className="row">
             <table className="table" >
@@ -10,18 +18,15 @@ const UserList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>meadch</td>
-                    </tr>
-                    <tr>
-                        <td>zachattack83</td>
-                    </tr>
-                    <tr>
-                        <td>hewuse23</td>
-                    </tr>
+                    {tableRows}
                 </tbody>
             </table>
         </div>
     )
 }
+
+UserList.propTypes = {
+    users: array.isRequired
+}
+
 export default UserList;
