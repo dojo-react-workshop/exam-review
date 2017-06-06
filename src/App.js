@@ -9,7 +9,6 @@ class App extends Component {
         users: []
     }
     handleSearchFormSubmit = (searchTerm) => {
-
         return axios.get(`https://api.github.com/search/users?q=${searchTerm}`)
             .then(({ data }) => {
                 const { items: users } = data;

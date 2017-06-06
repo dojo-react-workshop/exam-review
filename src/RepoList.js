@@ -5,17 +5,31 @@ import { Redirect } from 'react-router-dom';
 
 class RepoList extends Component {
     state = {
-        repos: []
+        repos: [],
+        selectedUser: this.props.match.params.user
     }
-
     componentDidMount() {
-        const { user } = this.props.match.params
-        axios.get(`https://api.github.com/users/${user}/repos`)
+        const { selectedUser } = this.state;
+        axios.get(`https://api.github.com/users/${selectedUser}/repos`)
             .then((response) => {
+                console.log(response)
                 this.setState({
                     repos: response.data
                 })
             })
+    }
+    componentWillReceiveProps(nextProps) {
+        const { selectedUser } = this.state;
+        const nextUser = nextProps.match.params.user
+        if (nextUser !== selectedUser) {
+            axios.get(`https://api.github.com/users/${nextUser}/repos`)
+                .then((response) => {
+                    this.setState({
+                        repos: response.data,
+                        selectedUser: nextUser
+                    })
+                });
+        }
     }
 
     render() {
